@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.core import validators
 from django.db import models
+from colorfield.fields import ColorField
 
 
 User = get_user_model()
@@ -14,7 +15,7 @@ class Tag(models.Model):
         unique=True,
     )
 
-    color = models.CharField(
+    color = ColorField(
         "Цвет тега (hex)", max_length=16, unique=True, default="#CD5C5C"
     )
 
@@ -97,6 +98,7 @@ class Recipe(models.Model):
     )
 
     class Meta:
+        ordering = ('-id',)
         verbose_name = "Рецепт"
         verbose_name_plural = "Рецепты"
 
